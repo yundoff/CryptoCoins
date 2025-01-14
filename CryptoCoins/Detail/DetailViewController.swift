@@ -25,7 +25,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.refreshControl = refreshControl
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     private lazy var detailStackView: UIStackView = {
@@ -34,17 +33,13 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         stackView.spacing = 10
         stackView.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
     private lazy var priceStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [priceLabel, changesLabel])
-        stackView.axis = .horizontal
         stackView.spacing = 10
         stackView.alignment = .center
-        stackView.distribution = .fill
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -55,11 +50,9 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
             supplyStackView,
             stackSeparator2,
             volumeStackView])
-        stackView.axis = .horizontal
         stackView.distribution = .equalCentering
         stackView.alignment = .center
         stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -67,7 +60,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         let stackView = UIStackView(arrangedSubviews: [marketCapLabel, marketCapValueLabel])
         stackView.axis = .vertical
         stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -75,7 +67,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         let stackView = UIStackView(arrangedSubviews: [supplyLabel, supplyValueLabel])
         stackView.axis = .vertical
         stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -83,7 +74,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         let stackView = UIStackView(arrangedSubviews: [volumeLabel, volumeValueLabel])
         stackView.axis = .vertical
         stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -93,7 +83,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         label.textColor = .white
         label.font = label.font.withSize(24)
         label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -102,7 +91,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         label.text = "..."
         label.textColor = Resources.Colors.changeGreen
         label.font = label.font.withSize(14)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -113,7 +101,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         label.layer.opacity = 0.5
         label.font = label.font.withSize(12)
         label.sizeToFit()
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -123,7 +110,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         label.textColor = .white
         label.font = label.font.withSize(16)
         label.sizeToFit()
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -135,7 +121,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         label.layer.opacity = 0.5
         label.font = label.font.withSize(12)
         label.sizeToFit()
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -145,7 +130,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         label.textColor = .white
         label.font = label.font.withSize(16)
         label.sizeToFit()
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -157,7 +141,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         label.layer.opacity = 0.5
         label.font = label.font.withSize(12)
         label.sizeToFit()
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -167,21 +150,18 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         label.textColor = .white
         label.font = label.font.withSize(16)
         label.sizeToFit()
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let stackSeparator1: UIImageView = {
         let separator = UIImageView()
         separator.image = UIImage(resource: .separator)
-        separator.translatesAutoresizingMaskIntoConstraints = false
         return separator
     }()
     
     private let stackSeparator2: UIImageView = {
         let separator = UIImageView()
         separator.image = UIImage(resource: .separator)
-        separator.translatesAutoresizingMaskIntoConstraints = false
         return separator
     }()
     
@@ -219,7 +199,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        setupLayout()
         setupCustomNavigationBar(with: "...")
         presenter.requestDetailCurrencyData()
     }
@@ -247,19 +226,14 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
 
         view.backgroundColor = UIColor(patternImage: UIImage(named: "background") ?? UIImage())
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
-    }
-    
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            detailStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            detailStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            detailStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
+        
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        detailStackView.snp.makeConstraints {
+            $0.width.equalToSuperview()
+        }
     }
     
     private func setupCustomNavigationBar(with title: String) {

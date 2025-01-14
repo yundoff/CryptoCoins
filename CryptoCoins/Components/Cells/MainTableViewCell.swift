@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class MainTableViewCell: UITableViewCell {
     
@@ -19,15 +20,13 @@ final class MainTableViewCell: UITableViewCell {
         stackView.alignment = .center
         stackView.distribution = .fillProportionally
         stackView.spacing = 10
-        stackView.layoutMargins = UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.layoutMargins = UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20)
         return stackView
     }()
     
     private let tableImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -36,8 +35,6 @@ final class MainTableViewCell: UITableViewCell {
         stackView.axis = .vertical
         stackView.alignment = .leading
         stackView.spacing = 2
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -45,7 +42,6 @@ final class MainTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = label.font.withSize(16)
         label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -53,7 +49,6 @@ final class MainTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = label.font.withSize(14)
         label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -62,8 +57,6 @@ final class MainTableViewCell: UITableViewCell {
         stackView.axis = .vertical
         stackView.alignment = .trailing
         stackView.spacing = 2
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -71,7 +64,6 @@ final class MainTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = label.font.withSize(16)
         label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -79,7 +71,6 @@ final class MainTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = label.font.withSize(14)
         label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -97,25 +88,16 @@ final class MainTableViewCell: UITableViewCell {
     
     // MARK: - Private Methods
     private func setupViews() {
-        setupSubviews()
-        setupLayout()
-    }
-    
-    private func setupSubviews() {
         backgroundColor = .clear
         contentView.addSubview(tableStackView)
-    }
-    
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            tableImageView.widthAnchor.constraint(equalToConstant: 48),
-            tableImageView.heightAnchor.constraint(equalToConstant: 48),
-            
-            tableStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            tableStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            tableStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            tableStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        ])
+        
+        tableImageView.snp.makeConstraints {
+            $0.size.equalTo(48)
+        }
+        
+        tableStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     private func setupSelectedBackground() {
@@ -124,7 +106,7 @@ final class MainTableViewCell: UITableViewCell {
         selectedBackgroundView = selectedView
     }
 
-    // MARK: -  Methods
+    // MARK: - Methods
     func setup(model: Main.Response.Currency) {
         let defaultImage = UIImage(named: "defaultImage")
         let imageName = model.symbol.lowercased()
@@ -149,4 +131,3 @@ final class MainTableViewCell: UITableViewCell {
         }
     }
 }
-

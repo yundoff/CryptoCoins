@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8417C28D2D36E10300643987 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8417C28C2D36E10300643987 /* SnapKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		84980BD12D35196700B3E33F /* CryptoCoins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoCoins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8417C28D2D36E10300643987 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = CryptoCoins;
 			packageProductDependencies = (
+				8417C28C2D36E10300643987 /* SnapKit */,
 			);
 			productName = Test;
 			productReference = 84980BD12D35196700B3E33F /* CryptoCoins.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = 84980BC82D35196700B3E33F;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8417C28B2D36E10300643987 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 84980BD22D35196700B3E33F /* Products */;
 			projectDirPath = "";
@@ -335,6 +344,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8417C28B2D36E10300643987 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8417C28C2D36E10300643987 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8417C28B2D36E10300643987 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 84980BC92D35196700B3E33F /* Project object */;
 }

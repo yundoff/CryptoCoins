@@ -44,7 +44,6 @@ class MainViewController: UIViewController, MainViewControllerProtocol {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.frame.height/4, right: 0)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
@@ -80,7 +79,6 @@ class MainViewController: UIViewController, MainViewControllerProtocol {
         setupTapToDismissSearch()
         setupNavigationBar()
         setupViews()
-        setupLayout()
         presenter.requestCurrencyData()
     }
 
@@ -103,6 +101,9 @@ class MainViewController: UIViewController, MainViewControllerProtocol {
     private func setupViews() {
         view.addSubview(tableView)
         view.backgroundColor = UIColor(patternImage: UIImage(named: "background") ?? UIImage())
+        tableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     private func setupNavigationBar() {
@@ -120,15 +121,6 @@ class MainViewController: UIViewController, MainViewControllerProtocol {
         navigationItem.searchController = searchController
         
         navigationController?.navigationBar.barStyle = .black
-    }
-    
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
     }
     
     private func setupTapToDismissSearch() {
@@ -152,7 +144,6 @@ class MainViewController: UIViewController, MainViewControllerProtocol {
 
     @objc
     private func searchButtonAction() {
-        navigationItem.searchController = searchController
         searchController.searchBar.becomeFirstResponder()
     }
     @objc
