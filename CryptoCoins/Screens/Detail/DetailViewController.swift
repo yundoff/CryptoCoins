@@ -242,6 +242,8 @@ class DetailViewController: UIViewController {
         let titleBarButtonItem = UIBarButtonItem(customView: titleLabel)
         
         navigationItem.leftBarButtonItems = [backBarButtonItem, titleBarButtonItem]
+        
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     func setup(model: Detail.Currency) {
