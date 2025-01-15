@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  Test
+//  CryptoCoins
 //
 //  Created by Aleksey Yundov on 13.01.2025.
 //

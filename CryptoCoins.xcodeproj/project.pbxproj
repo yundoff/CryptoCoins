@@ -18,7 +18,7 @@
 		84980C782D353CC700B3E33F /* Exceptions for "CryptoCoins" folder in "CryptoCoins" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"Supporting Files/Info.plist",
+				SupportingFiles/Info.plist,
 			);
 			target = 84980BD02D35196700B3E33F /* CryptoCoins */;
 		};
@@ -156,7 +156,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 848CGPJKXP;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "CryptoCoins/Supporting Files/Info.plist";
+				INFOPLIST_FILE = CryptoCoins/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -184,7 +184,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 848CGPJKXP;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "CryptoCoins/Supporting Files/Info.plist";
+				INFOPLIST_FILE = CryptoCoins/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
