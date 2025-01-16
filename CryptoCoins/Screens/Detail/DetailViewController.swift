@@ -257,13 +257,8 @@ class DetailViewController: UIViewController {
         supplyValueLabel.text = model.supply
         volumeLabel.text = Localizable.Detail.volumeTitle
         volumeValueLabel.text = model.volume
-        
-        if let change = Double(model.change.replacingOccurrences(of: "%", with: "")) {
-            changesLabel.text = "\(change)%"
-            changesLabel.textColor = change > 0 ? .init(resource: .changeGreen) : .init(resource: .changeRed)
-        } else {
-            changesLabel.text = model.change
-        }
+        changesLabel.text = model.change
+        changesLabel.textColor = model.change.contains("-") ? .init(resource: .changeRed) : .init(resource: .changeGreen)
     }
 }
 

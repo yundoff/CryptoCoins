@@ -32,11 +32,11 @@ func formatLargeNumber(_ number: Double) -> String {
     let absNumber = abs(number)
     switch absNumber {
     case 1_000_000_000_000...:
-        return "\(formatter.string(from: NSNumber(value: absNumber / 1_000_000_000_000)) ?? "0") t"
+        return "\(formatter.string(from: NSNumber(value: absNumber / 1_000_000_000_000)) ?? "0")t"
     case 1_000_000_000...:
-        return "\(formatter.string(from: NSNumber(value: absNumber / 1_000_000_000)) ?? "0") b"
+        return "\(formatter.string(from: NSNumber(value: absNumber / 1_000_000_000)) ?? "0")b"
     case 1_000_000...:
-        return "\(formatter.string(from: NSNumber(value: absNumber / 1_000_000)) ?? "0") m"
+        return "\(formatter.string(from: NSNumber(value: absNumber / 1_000_000)) ?? "0")m"
     default:
         return formatter.string(from: NSNumber(value: absNumber)) ?? "0"
     }
