@@ -123,28 +123,13 @@ extension MainPresenter: MainPresenterProtocol {
         controller?.display(currencies)
     }
     
-    func configure(model: Main.Currency) -> Main.Currency {
-        guard
-            let price = Double(model.price
-                .replacingOccurrences(of: "$", with: "")
-                .replacingOccurrences(of: ",", with: "")),
-            
-            let change = Double(model.change
-                .replacingOccurrences(of: "%", with: ""))
-                
-        else {
-            return model
-        }
-        
-        let formattedPrice = "$\(price.formattedWithSuffix())"
-        let formattedChange = "\(change.formattedWithSuffix())%"
-        
+    private func configure(model: Main.Currency) -> Main.Currency {
         return Main.Currency(
             id: model.id,
             name: model.name,
             symbol: model.symbol,
-            price: formattedPrice,
-            change: formattedChange
+            price: formatValue(model.price, prefix: "$", suffix: ""),
+            change: formatValue(model.change, prefix: "", suffix: "%")
         )
     }
 }

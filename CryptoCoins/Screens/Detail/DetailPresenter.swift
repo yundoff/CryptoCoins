@@ -58,24 +58,14 @@ final class DetailPresenter {
     }
     
     private func configure(model: Detail.Currency) -> Detail.Currency {
-        let formatter: (String, String, String) -> String = { value, symbol, suffix in
-            guard
-                let number = Double(value.replacingOccurrences(of: symbol, with: "")
-                .replacingOccurrences(of: "%", with: "").replacingOccurrences(of: ",", with: ""))
-            else {
-                return value
-            }
-            return "\(symbol == "$" ? "$" : "")\(number.formattedWithSuffix())\(suffix)"
-        }
-        
         return Detail.Currency(
             id: model.id,
             name: model.name,
-            price: formatter(model.price, "$", ""),
-            change: formatter(model.change, "", "%"),
-            marketCap: formatter(model.marketCap.replacingOccurrences(of: "b", with: ""), "$", ""),
-            supply: formatter(model.supply.replacingOccurrences(of: "m", with: ""), "", ""),
-            volume: formatter(model.volume.replacingOccurrences(of: "b", with: ""), "$", "")
+            price: formatValue(model.price, prefix: "$", suffix: ""),
+            change: formatValue(model.change, prefix: "", suffix: "%"),
+            marketCap: formatValue(model.marketCap, prefix: "$", suffix: ""),
+            supply: formatValue(model.supply, prefix: "", suffix: ""),
+            volume: formatValue(model.volume, prefix: "$", suffix: "")
         )
     }
 }
