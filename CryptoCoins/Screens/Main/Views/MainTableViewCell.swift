@@ -14,7 +14,7 @@ final class MainTableViewCell: UITableViewCell {
     
     static let id = "MainTableViewCell"
     
-    enum constants {
+    enum Constants {
         static let horizontalInset: CGFloat = 20
         static let verticalInset: CGFloat = 12
         static let horizontalSpacing: CGFloat = 10
@@ -31,28 +31,25 @@ final class MainTableViewCell: UITableViewCell {
         
         stackView.axis = .horizontal
         stackView.alignment = .center
-        stackView.spacing = constants.horizontalSpacing
+        stackView.spacing = Constants.horizontalSpacing
         
         stackView.layoutMargins = UIEdgeInsets(
-            top: constants.verticalInset,
-            left: constants.horizontalInset,
-            bottom:  constants.verticalInset,
-            right: constants.horizontalInset)
+            top: Constants.verticalInset,
+            left: Constants.horizontalInset,
+            bottom:  Constants.verticalInset,
+            right: Constants.horizontalInset)
         
         return stackView
     }()
     
-    private let tableImageView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
+    private let tableImageView = UIImageView()
     
     private lazy var titleStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [currencyLabel, abbreviationLabel])
         
         stackView.axis = .vertical
         stackView.alignment = .leading
-        stackView.spacing = constants.verticalSpacing
+        stackView.spacing = Constants.verticalSpacing
         
         return stackView
     }()
@@ -60,14 +57,14 @@ final class MainTableViewCell: UITableViewCell {
     private let currencyLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = label.font.withSize(constants.middleFontSize)
+        label.font = label.font.withSize(Constants.middleFontSize)
         return label
     }()
     
     private let abbreviationLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = label.font.withSize(constants.smallFontSize)
+        label.font = label.font.withSize(Constants.smallFontSize)
         return label
     }()
     
@@ -85,13 +82,13 @@ final class MainTableViewCell: UITableViewCell {
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = label.font.withSize(constants.middleFontSize)
+        label.font = label.font.withSize(Constants.middleFontSize)
         return label
     }()
     
     private let changesLabel: UILabel = {
         let label = UILabel()
-        label.font = label.font.withSize(constants.smallFontSize)
+        label.font = label.font.withSize(Constants.smallFontSize)
         return label
     }()
     
@@ -110,30 +107,27 @@ final class MainTableViewCell: UITableViewCell {
     // MARK: - Setup Views
     
     private func setupViews() {
-        setupSubviews()
-    }
-    
-    private func setupSubviews() {
         selectionStyle = .none
         backgroundColor = .clear
         
-        tableImageView.snp.makeConstraints { $0.size.equalTo(constants.imageSize) }
+        tableImageView.snp.makeConstraints { $0.size.equalTo(Constants.imageSize) }
         
         contentView.addSubview(tableStackView)
         tableStackView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(constants.horizontalInset)
-            $0.verticalEdges.equalToSuperview().inset(constants.verticalInset)
+            $0.horizontalEdges.equalToSuperview().inset(Constants.horizontalInset)
+            $0.verticalEdges.equalToSuperview().inset(Constants.verticalInset)
         }
     }
     
     func setup(model: Main.Currency) {
         let defaultImage = UIImage(resource: .default)
         let imageName = model.symbol.lowercased()
+        
         tableImageView.image = UIImage(named: imageName) ?? defaultImage
         currencyLabel.text = model.name
         abbreviationLabel.text = model.symbol
         priceLabel.text = model.price
         changesLabel.text = model.change
-        changesLabel.textColor = model.change.contains("-") ? .init(resource: .changeRed) : .init(resource: .changeGreen)
+        changesLabel.textColor = model.change.contains("-") ? .init(resource: .chRed) : .init(resource: .chGreen)
     }
 }

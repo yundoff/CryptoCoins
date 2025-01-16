@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainPresenterProtocol: AnyObject {
-
+    
     func requestInitialData()
     func requestAssets()
     
@@ -16,14 +16,14 @@ protocol MainPresenterProtocol: AnyObject {
 }
 
 final class MainPresenter {
-
+    
     // MARK: - Properties
     
     private let networkService: NetworkServiceProtocol
     weak var controller: MainViewControllerProtocol?
-
+    
     private var currencyData: [Main.Currency] = []
-
+    
     // MARK: - Init
     
     init(networkService: NetworkServiceProtocol) {
@@ -35,7 +35,7 @@ final class MainPresenter {
     private func fetchCurrencies(completion: @escaping (Result<[Main.Currency], Error>) -> Void) {
         networkService.request(.main.assets()) { [weak self] (result: Result<MainAssetsResponse?, Error>) in
             guard let self else { return }
-
+            
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
@@ -75,7 +75,7 @@ final class MainPresenter {
 // MARK: - MainPresenterProtocol
 
 extension MainPresenter: MainPresenterProtocol {
-
+    
     func requestInitialData() {
         let data = Main.InitialData(
             title: Localizable.Main.title,
@@ -83,10 +83,10 @@ extension MainPresenter: MainPresenterProtocol {
             searchBarPlaceholder: Localizable.Main.searchPlaceholder,
             backgroundImage: .init(resource: .background)
         )
-
+        
         controller?.display(data)
     }
-
+    
     func requestAssets() {
         fetchCurrencies { [weak self] result in
             guard let self else { return }
@@ -106,20 +106,20 @@ extension MainPresenter: MainPresenterProtocol {
             }
         }
     }
-
+    
     func search(text: String) {
         guard !text.isEmpty else {
             controller?.display(currencyData)
-
+            
             return
         }
-
+        
         let searchedText = text.lowercased()
         let currencies = currencyData.filter {
             $0.id.lowercased().contains(searchedText) ||
             $0.symbol.lowercased().contains(searchedText)
         }
-
+        
         controller?.display(currencies)
     }
     

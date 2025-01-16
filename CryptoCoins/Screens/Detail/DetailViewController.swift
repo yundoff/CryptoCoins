@@ -13,15 +13,14 @@ protocol DetailViewControllerProtocol: AnyObject {
     func display(_ currencies: [Detail.Currency])
     func display(_ error: Detail.Error)
     
-    func setup(model: Detail.Currency)
-    func setupCustomNavigationBar(name: String)
+
 }
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
     
     // MARK: - Nested Types
-
-    enum constants {
+    
+    enum Constants {
         static let inset: CGFloat = 20
         static let spacing: CGFloat = 10
         static let bigFontSize: CGFloat = 24
@@ -47,13 +46,13 @@ class DetailViewController: UIViewController {
         let stackView = UIStackView(arrangedSubviews: [priceStackView, paramsStackView])
         
         stackView.axis = .vertical
-        stackView.spacing = constants.spacing
+        stackView.spacing = Constants.spacing
         
         stackView.layoutMargins = UIEdgeInsets(
-            top: constants.inset,
-            left: constants.inset,
-            bottom: constants.zero,
-            right: constants.inset)
+            top: Constants.inset,
+            left: Constants.inset,
+            bottom: Constants.zero,
+            right: Constants.inset)
         stackView.isLayoutMarginsRelativeArrangement = true
         
         return stackView
@@ -61,7 +60,7 @@ class DetailViewController: UIViewController {
     
     private lazy var priceStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [priceLabel, changesLabel])
-        stackView.spacing = constants.spacing
+        stackView.spacing = Constants.spacing
         stackView.alignment = .center
         return stackView
     }()
@@ -70,14 +69,14 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .white
-        label.font = label.font.withSize(constants.bigFontSize)
+        label.font = label.font.withSize(Constants.bigFontSize)
         return label
     }()
     
     private let changesLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = label.font.withSize(constants.middleFontSize)
+        label.font = label.font.withSize(Constants.middleFontSize)
         return label
     }()
     
@@ -89,7 +88,7 @@ class DetailViewController: UIViewController {
             secondStackSeparator,
             volumeStackView])
         
-        stackView.spacing = constants.spacing
+        stackView.spacing = Constants.spacing
         stackView.distribution = .equalCentering
         stackView.alignment = .center
         
@@ -99,7 +98,7 @@ class DetailViewController: UIViewController {
     private lazy var marketCapStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [marketCapLabel, marketCapValueLabel])
         stackView.axis = .vertical
-        stackView.spacing = constants.spacing
+        stackView.spacing = Constants.spacing
         return stackView
     }()
     
@@ -107,26 +106,23 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.layer.opacity = 0.5
         label.textColor = .white
-        label.font = label.font.withSize(constants.smallFontSize)
+        label.font = label.font.withSize(Constants.smallFontSize)
         return label
     }()
     
     private let marketCapValueLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = label.font.withSize(constants.middleFontSize)
+        label.font = label.font.withSize(Constants.middleFontSize)
         return label
     }()
     
-    private let firstStackSeparator: UIImageView = {
-        let separator = UIImageView()
-        return separator
-    }()
+    private let firstStackSeparator = UIImageView()
     
     private lazy var supplyStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [supplyLabel, supplyValueLabel])
         stackView.axis = .vertical
-        stackView.spacing = constants.spacing
+        stackView.spacing = Constants.spacing
         return stackView
     }()
     
@@ -134,26 +130,23 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.layer.opacity = 0.5
         label.textColor = .white
-        label.font = label.font.withSize(constants.smallFontSize)
+        label.font = label.font.withSize(Constants.smallFontSize)
         return label
     }()
     
     private let supplyValueLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = label.font.withSize(constants.middleFontSize)
+        label.font = label.font.withSize(Constants.middleFontSize)
         return label
     }()
     
-    private let secondStackSeparator: UIImageView = {
-        let separator = UIImageView()
-        return separator
-    }()
+    private let secondStackSeparator = UIImageView()
     
     private lazy var volumeStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [volumeLabel, volumeValueLabel])
         stackView.axis = .vertical
-        stackView.spacing = constants.spacing
+        stackView.spacing = Constants.spacing
         return stackView
     }()
     
@@ -161,21 +154,21 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.textColor = .white
         label.layer.opacity = 0.5
-        label.font = label.font.withSize(constants.smallFontSize)
+        label.font = label.font.withSize(Constants.smallFontSize)
         return label
     }()
     
     private let volumeValueLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = label.font.withSize(constants.middleFontSize)
+        label.font = label.font.withSize(Constants.middleFontSize)
         return label
     }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = label.font.withSize(constants.bigFontSize)
+        label.font = label.font.withSize(Constants.bigFontSize)
         return label
     }()
     
@@ -251,7 +244,6 @@ class DetailViewController: UIViewController {
     }
     
     func setup(model: Detail.Currency) {
-        
         setupCustomNavigationBar(name: model.name)
         
         priceLabel.text = model.price
@@ -262,14 +254,13 @@ class DetailViewController: UIViewController {
         volumeLabel.text = Localizable.Detail.volumeTitle
         volumeValueLabel.text = model.volume
         changesLabel.text = model.change
-        changesLabel.textColor = model.change.contains("-") ? .init(resource: .changeRed) : .init(resource: .changeGreen)
+        changesLabel.textColor = model.change.contains("-") ? .init(resource: .chRed) : .init(resource: .chGreen)
     }
 }
 
 // MARK: - DetailViewControllerProtocol
 
 extension DetailViewController: DetailViewControllerProtocol {
-    
     func display(_ initialData: Detail.InitialData) {
         firstStackSeparator.image = initialData.separatorImage
         secondStackSeparator.image = initialData.separatorImage
@@ -279,6 +270,7 @@ extension DetailViewController: DetailViewControllerProtocol {
     
     func display(_ currency: [Detail.Currency]) {
         guard let currency = currency.first else { return }
+        
         setup(model: currency)
         refreshControl.endRefreshing()
     }

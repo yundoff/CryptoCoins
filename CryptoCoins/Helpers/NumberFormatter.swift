@@ -13,7 +13,7 @@ func formatValue(_ value: String, prefix: String = "", suffix: String = "") -> S
         .replacingOccurrences(of: "%", with: "")
         .replacingOccurrences(of: ",", with: "")
         .replacingOccurrences(of: "-", with: "")
-
+    
     guard let doubleValue = Double(cleanedValue) else { return value }
     
     let signPrefix = value.contains("-") || doubleValue < 0 ? "- " : (prefix.isEmpty ? "+ " : "\(prefix) ")

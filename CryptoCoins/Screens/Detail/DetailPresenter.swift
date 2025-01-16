@@ -16,7 +16,7 @@ protocol DetailPresenterProtocol: AnyObject {
 final class DetailPresenter {
     
     // MARK: - Properties
-
+    
     private let networkService: NetworkServiceProtocol
     weak var controller: DetailViewControllerProtocol?
     
@@ -81,7 +81,6 @@ extension DetailPresenter: DetailPresenterProtocol {
             backgroundImage: .init(resource: .background)
         )
         controller?.display(data)
-        controller?.setupCustomNavigationBar(name: name)
     }
     
     func requestAssets() {
