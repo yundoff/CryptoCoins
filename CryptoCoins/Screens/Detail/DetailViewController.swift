@@ -187,7 +187,11 @@ class DetailViewController: UIViewController {
     
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
+        
+        refreshControl.tintColor = .white
+        
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        
         return refreshControl
     }()
     
