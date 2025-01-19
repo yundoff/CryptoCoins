@@ -13,7 +13,6 @@ protocol DetailViewControllerProtocol: AnyObject {
     func display(_ currencies: [Detail.Currency])
     func display(_ error: Detail.Error)
     
-
 }
 
 final class DetailViewController: UIViewController {

@@ -59,8 +59,8 @@ final class DetailPresenter {
     
     private func configure(model: Detail.Currency) -> Detail.Currency {
         return Detail.Currency(
-            id: model.id,
-            name: model.name,
+            id: id,
+            name: name,
             price: formatValue(model.price, prefix: "$", suffix: ""),
             change: formatValue(model.change, prefix: "", suffix: "%"),
             marketCap: formatValue(model.marketCap, prefix: "$", suffix: ""),

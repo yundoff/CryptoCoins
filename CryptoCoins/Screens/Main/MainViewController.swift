@@ -12,6 +12,7 @@ protocol MainViewControllerProtocol: AnyObject {
     func display(_ initialData: Main.InitialData)
     func display(_ currencies: [Main.Currency])
     func display(_ error: Main.Error)
+    
 }
 
 final class MainViewController: UIViewController {
